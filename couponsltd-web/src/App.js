@@ -12,7 +12,6 @@ function App() {
   }
   return (
     <div className='wrapper'>
-      <h1>Application</h1>
       <BrowserRouter>
         <Switch>
           <Route path='/coupons'>
