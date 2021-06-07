@@ -7,7 +7,7 @@ import Coupons from './components/CouponPage/Coupon';
 
 function App() {
   const [token, setToken] = useState();
-  if (!token) {
+  if (!token?.token) {
     return <Login setToken={setToken} />;
   }
   return (
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path='/coupons'>
-            <Coupons />
+            <Coupons token={token} />
           </Route>
         </Switch>
       </BrowserRouter>
