@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppConfig from './../../config';
+import './Coupon.css';
 
 export default function Coupons(props) {
   const [coupons, setCoupons] = useState(null);
@@ -41,16 +42,19 @@ export default function Coupons(props) {
         }
       )
       .then((response) => {
-        let newCoupons = [...coupons];
-        var activatedArr = newCoupons.map((c) => {
-          var coupon = { ...c };
-          if (c.id === couponId) {
-            coupon.isActived = true;
-          }
-          return coupon;
-        });
+        if (response.data) {
+          let newCoupons = [...coupons];
+          var activatedArr = newCoupons.map((c) => {
+            var coupon = { ...c };
+            if (c.id === couponId) {
+              coupon.isActived = true;
+              coupon.promoCode = promoCode;
+            }
+            return coupon;
+          });
 
-        setCoupons(activatedArr);
+          setCoupons(activatedArr);
+        }
       })
       .catch(console.log);
   }
@@ -78,7 +82,7 @@ export default function Coupons(props) {
                     disabled
                     type='text'
                     className='form-control'
-                    placeholder='Already active Promo Code'
+                    placeholder={c.promoCode}
                   ></input>
                 )}
                 <div className='ml-2'>
