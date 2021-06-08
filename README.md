@@ -1,7 +1,5 @@
 # couponsltd-web
 
-# couponsltd-server
-
 ## Tech 
 - React
 
